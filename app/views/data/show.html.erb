@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @datum.month %>
+</p>
+
+<p>
+  <strong>Profits:</strong>
+  <%= @datum.profits %>
+</p>
+
+<p>
+  <strong>Inventory:</strong>
+  <%= @datum.inventory %>
+</p>
+
+<%= link_to 'Edit', edit_datum_path(@datum) %> |
+<%= link_to 'Back', data_path %>
