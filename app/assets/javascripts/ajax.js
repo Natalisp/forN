@@ -9,8 +9,13 @@ function loadData() {
 
 $(function() {
   var data = {
-                "Jan":{profits:50,inventory:10},
-                "Feb":{profits:70,inventory:20},
+                "Jan":{profits:100000,inventory:4000},
+                "Feb":{profits:120000,inventory:4500},
+                "Mar":{profits:150000,inventory:4700},
+                "Apr":{profits:90000,inventory:3200},
+                "May":{profits:75000,inventory:3000},
+                "Jun":{profits:87000,inventory:2000},
+                "Jul":{profits:190000,inventory:500}
                };
 
 
@@ -59,9 +64,10 @@ function displayData(data){
   $('.data').html('');
   for (var key in data){
     var inventory = data[key].inventory;
+    var inv_calc = (data[key].inventory)/100;
 
     $('.data').append("<li><span>"+key+"</span></li>");
-    $('.bars').append("<li><div data-percentage='"+data[key].inventory+"' class='bar'>"+inventory+"</div></li>");
+    $('.bars').append("<li><div data-percentage='"+inv_calc+"' class='bar'>"+inventory+"</div></li>");
 
   };
 }
@@ -72,9 +78,10 @@ function changeData(data){
   $('.data').html('');
   for (var key in data){
     var profits = data[key].profits;
+    var prof_calc = (data[key].inventory)/100;
 
     $('.data').append("<li><span>"+key+"</span></li>");
-    $('.bars').append("<li><div data-percentage='"+data[key].profits+"' class='bar'>"+profits+"</div></li>");
+    $('.bars').append("<li><div data-percentage='"+prof_calc+"' class='bar'>"+profits+"</div></li>");
 
   };
 }
