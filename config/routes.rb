@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :data
 root to: 'welcome#index'
-
-get 'data', to: "welcome#data"
+get 'data', to: 'data#data',  :defaults => { :format => 'json' }
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

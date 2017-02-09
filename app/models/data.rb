@@ -1,3 +1,3 @@
 class Data < ActiveRecord::Base
-  include HTTParty
+include HTTParty
 end

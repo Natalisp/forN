@@ -1,28 +1,30 @@
-function loadData() {
-  $.get("/data")
-  .done(function(data) {
-    D = JSON.parse(data);
-    console.log(data)
-  });
-}
-
 
 $(function() {
-  var data = {
-                "Jan":{profits:100000,inventory:4000},
-                "Feb":{profits:120000,inventory:4500},
-                "Mar":{profits:150000,inventory:4700},
-                "Apr":{profits:90000,inventory:3200},
-                "May":{profits:75000,inventory:3000},
-                "Jun":{profits:87000,inventory:2000},
-                "Jul":{profits:190000,inventory:500}
-               };
+  // var data = {
+  //               "Jan":{profits:100000,inventory:4000},
+  //               "Feb":{profits:120000,inventory:4500},
+  //               "Mar":{profits:150000,inventory:4700},
+  //               "Apr":{profits:90000,inventory:3200},
+  //               "May":{profits:75000,inventory:3000},
+  //               "Jun":{profits:87000,inventory:2000},
+  //               "Jul":{profits:190000,inventory:500}
+  //              };
 
+  // displayData(data);
+  // animate();
+  getData();
 
-
-  displayData(data);
-  animate();
-  changeChart(data)
+  function getData() {
+    $.ajax({
+      type: 'GET',
+      url: window.location.href + "/" + "data",
+      success: function(resp) {
+        displayData(resp);
+        animate();
+       changeChart(resp)
+      }
+    })
+  }
 
 function changeChart(data) {
   $('select').change(function(){
@@ -62,25 +64,26 @@ function changeChart(data) {
 function displayData(data){
   $('.bars').html('');
   $('.data').html('');
-  for (var key in data){
-    var inventory = data[key].inventory;
-    var inv_calc = (data[key].inventory)/100;
+  for (var i=0; i < data.length; i++){
+    var inventory = data[i]["inventory"];
+    var inv_calc = (data[i]["inventory"])/100;
+    var month = data[i]["month"];
 
-    $('.data').append("<li><span>"+key+"</span></li>");
+    $('.data').append("<li><span>"+month+"</span></li>");
     $('.bars').append("<li><div data-percentage='"+inv_calc+"' class='bar'>"+inventory+"</div></li>");
 
   };
 }
 
 function changeData(data){
-  console.log(data)
   $('.bars').html('');
   $('.data').html('');
-  for (var key in data){
-    var profits = data[key].profits;
-    var prof_calc = (data[key].inventory)/100;
+  for (var i=0; i < data.length; i++){
+    var profits = data[i]["profits"];
+    var prof_calc = (data[i]["profits"])/10000;
+        month = data[i]["month"];
 
-    $('.data').append("<li><span>"+key+"</span></li>");
+    $('.data').append("<li><span>"+month+"</span></li>");
     $('.bars').append("<li><div data-percentage='"+prof_calc+"' class='bar'>"+profits+"</div></li>");
 
   };
