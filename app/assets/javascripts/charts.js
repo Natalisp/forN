@@ -39,12 +39,9 @@ function changeChart(data) {
   });
 }
 
-
-
-
-  $('input:button').click(function(){
-    var name = $('#txtSkill').val(),
-        perc = $('#txtPerc').val();
+$('input:button').click(function(){
+  var name = $('#txtSkill').val(),
+      perc = $('#txtPerc').val();
 
     if(name && perc){
       data[name] = {profits:perc};
@@ -70,7 +67,7 @@ function displayData(data){
     var month = data[i]["month"];
 
     $('.data').append("<li><span>"+month+"</span></li>");
-    $('.bars').append("<li><div data-percentage='"+inv_calc+"' class='bar'>"+inventory+"</div></li>");
+    $('.bars').append("<li><div data-percentage='"+inv_calc+"' class='bar'></div></li>");
 
   };
 }
@@ -80,15 +77,14 @@ function changeData(data){
   $('.data').html('');
   for (var i=0; i < data.length; i++){
     var profits = data[i]["profits"];
-    var prof_calc = (data[i]["profits"])/10000;
+    var prof_calc = (data[i]["profits"])/2000;
         month = data[i]["month"];
 
     $('.data').append("<li><span>"+month+"</span></li>");
-    $('.bars').append("<li><div data-percentage='"+prof_calc+"' class='bar'>"+profits+"</div></li>");
+    $('.bars').append("<li><div data-percentage='"+prof_calc+"' class='bar'></div></li>");
 
   };
 }
-
 
 function animate(){
   $('.bar').css('width','0px');
@@ -98,6 +94,5 @@ function animate(){
     $(this).delay(i+"00").animate({'width': percentage + '%'}, 700);
 
   });
-
 
 }
